@@ -15,23 +15,23 @@ with open('intents.json', 'r') as f:
 all_words = []
 tags = []
 xy = []
-# loop through each sentence in our intents patterns
+# Vòng lặp
 for intent in intents['intents']:
     tag = intent['tag']
-    # add to tag list
+    # Thêm vào tag list
     tags.append(tag)
     for pattern in intent['patterns']:
-        # tokenize each word in the sentence
+        # tách các từ trong câu
         w = tokenize(pattern)
-        # add to our words list
+        # thêm vào list words
         all_words.extend(w)
-        # add to xy pair
+        # thêm vào cặp xy
         xy.append((w, tag))
 
-# stem and lower each word
+# stem và lower mỗi từ
 ignore_words = ['?', '.', '!']
 all_words = [stem(w) for w in all_words if w not in ignore_words]
-# remove duplicates and sort
+#
 all_words = sorted(set(all_words))
 tags = sorted(set(tags))
 
@@ -39,7 +39,7 @@ print(len(xy), "patterns")
 print(len(tags), "tags:", tags)
 print(len(all_words), "unique stemmed words:", all_words)
 
-# create training data
+# tạo training data
 X_train = []
 y_train = []
 for (pattern_sentence, tag) in xy:
@@ -74,7 +74,7 @@ class ChatDataset(Dataset):
     def __getitem__(self, index):
         return self.x_data[index], self.y_data[index]
 
-    # we can call len(dataset) to return the size
+    # có thể dùng len(dataset) để trả size
     def __len__(self):
         return self.n_samples
 
@@ -89,11 +89,11 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 model = NeuralNet(input_size, hidden_size, output_size).to(device)
 
-# Loss and optimizer
+# Loss và optimizer
 criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
-# Train the model
+# Train mô hình
 for epoch in range(num_epochs):
     for (words, labels) in train_loader:
         words = words.to(device)
@@ -101,7 +101,7 @@ for epoch in range(num_epochs):
 
         # Forward pass
         outputs = model(words)
-        # if y would be one-hot, we must apply
+        # nếu y là one-hot thì dùng
         # labels = torch.max(labels, 1)[1]
         loss = criterion(outputs, labels)
 
@@ -110,19 +110,18 @@ for epoch in range(num_epochs):
         loss.backward()
         optimizer.step()
 
-    if (epoch+1) % 100 == 0:
-        print (f'Epoch [{epoch+1}/{num_epochs}], Loss: {loss.item():.4f}')
-
+    if (epoch + 1) % 100 == 0:
+        print(f'Epoch [{epoch + 1}/{num_epochs}], Loss: {loss.item():.4f}')
 
 print(f'final loss: {loss.item():.4f}')
 
 data = {
-"model_state": model.state_dict(),
-"input_size": input_size,
-"hidden_size": hidden_size,
-"output_size": output_size,
-"all_words": all_words,
-"tags": tags
+    "model_state": model.state_dict(),
+    "input_size": input_size,
+    "hidden_size": hidden_size,
+    "output_size": output_size,
+    "all_words": all_words,
+    "tags": tags
 }
 
 FILE = "data.pth"
