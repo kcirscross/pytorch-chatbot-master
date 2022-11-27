@@ -1,83 +1,83 @@
 {
   "intents": [
     {
-      "tag": "greeting",
+      "tag": "Chào hỏi",
       "patterns": [
         "Hi",
-        "Hey",
-        "How are you",
-        "Is anyone there?",
+        "Chào",
+        "Khỏe không?",
+        "Có ở đó không?",
         "Hello",
-        "Good day"
+        "Chào buổi sáng"
       ],
       "responses": [
         "Hey :-)",
-        "Hello, thanks for visiting",
-        "Hi there, what can I do for you?",
-        "Hi there, how can I help?"
+        "Chào nha",
+        "Tôi đây, tôi có thể giúp gì cho bạn?",
+        "Tôi đây, có gì không?"
       ]
     },
     {
-      "tag": "goodbye",
-      "patterns": ["Bye", "See you later", "Goodbye"],
+      "tag": "Tạm biệt",
+      "patterns": ["Bye", "Hẹn gặp lại", "Goodbye"],
       "responses": [
-        "See you later, thanks for visiting",
-        "Have a nice day",
-        "Bye! Come back again soon."
+        "Hẹn gặp lại",
+        "Bye bye",
+        ":("
       ]
     },
     {
-      "tag": "thanks",
-      "patterns": ["Thanks", "Thank you", "That's helpful", "Thank's a lot!"],
-      "responses": ["Happy to help!", "Any time!", "My pleasure"]
+      "tag": "cảm ơn",
+      "patterns": ["Thanks", "Ty", "Cảm ơn", "Cảm ơn rất nhiều"],
+      "responses": ["Rất vui lòng!", "Không có gì!", "Niềm vinh hạnh của tôi"]
     },
     {
       "tag": "items",
       "patterns": [
-        "Which items do you have?",
-        "What kinds of items are there?",
-        "What do you sell?"
+        "Bạn có những thứ gì?",
+        "Bạn có những loại đồ uống gì?",
+        "Bạn bán thứ gì vậy?"
       ],
       "responses": [
-        "We sell coffee and tea",
-        "We have coffee and tea"
+        "Chúng tôi có trà và cà phê",
+        "Chúng tôi bán trà và cà phê"
       ]
     },
     {
-      "tag": "payments",
+      "tag": "thanh toán",
       "patterns": [
-        "Do you take credit cards?",
-        "Do you accept Mastercard?",
-        "Can I pay with Paypal?",
-        "Are you cash only?"
+        "Bạn có nhận thẻ không?",
+        "Tôi có thể thanh toán bằng thẻ được không?",
+        "Trả bằng Momo được không?",
+        "Chỉ có thể trả bằng tiền mặt hả?"
       ],
       "responses": [
-        "We accept VISA, Mastercard and Paypal",
-        "We accept most major credit cards, and Paypal"
+        "Có thể thanh toán bằng thẻ ngân hàng nội địa hoặc VISA",
+        "Nếu bạn có tiền mặt thì càng tốt!"
       ]
     },
     {
-      "tag": "delivery",
+      "tag": "giao hàng",
       "patterns": [
-        "How long does delivery take?",
-        "How long does shipping take?",
-        "When do I get my delivery?"
+        "Bao lâu thì giao tới?",
+        "Bao lâu thì được shipper giao tới vậy?",
+        "Khi nào giao vậy ạ?"
       ],
       "responses": [
-        "Delivery takes 2-4 days",
-        "Shipping takes 2-4 days"
+        "Khoảng 30phút đến 1tiếng",
+        "30phút tới 1tiếng nha bạn"
       ]
     },
     {
       "tag": "funny",
       "patterns": [
-        "Tell me a joke!",
-        "Tell me something funny!",
-        "Do you know a joke?"
+        "Kể chuyện hài",
+        "Có gì vui không?",
+        "Chuyện hài"
       ],
       "responses": [
-        "Why did the hipster burn his mouth? He drank the coffee before it was cool.",
-        "What did the buffalo say when his son left for college? Bison."
+        "1+1=3",
+        "Woman."
       ]
     }
   ]

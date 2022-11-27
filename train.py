@@ -9,7 +9,7 @@ from torch.utils.data import Dataset, DataLoader
 from nltk_utils import bag_of_words, tokenize, stem
 from model import NeuralNet
 
-with open('intents.json', 'r') as f:
+with open('intents.json', 'r', encoding="utf8") as f:
     intents = json.load(f)
 
 all_words = []
@@ -31,7 +31,7 @@ for intent in intents['intents']:
 # stem và lower mỗi từ
 ignore_words = ['?', '.', '!']
 all_words = [stem(w) for w in all_words if w not in ignore_words]
-#
+# trick loại những từ lặp lại
 all_words = sorted(set(all_words))
 tags = sorted(set(tags))
 
@@ -70,11 +70,9 @@ class ChatDataset(Dataset):
         self.x_data = X_train
         self.y_data = y_train
 
-    # support indexing such that dataset[i] can be used to get i-th sample
     def __getitem__(self, index):
         return self.x_data[index], self.y_data[index]
 
-    # có thể dùng len(dataset) để trả size
     def __len__(self):
         return self.n_samples
 
@@ -99,10 +97,7 @@ for epoch in range(num_epochs):
         words = words.to(device)
         labels = labels.to(dtype=torch.long).to(device)
 
-        # Forward pass
         outputs = model(words)
-        # nếu y là one-hot thì dùng
-        # labels = torch.max(labels, 1)[1]
         loss = criterion(outputs, labels)
 
         # Backward and optimize
