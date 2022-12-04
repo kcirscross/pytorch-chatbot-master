@@ -26,7 +26,6 @@ model.load_state_dict(model_state)
 model.eval()
 
 bot_name = "Trần"
-print("Let's chat! (type 'quit' to exit)")
 
 def get_response(msg):
     sentence = tokenize(msg)

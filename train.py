@@ -43,17 +43,14 @@ print(len(all_words), "unique stemmed words:", all_words)
 X_train = []
 y_train = []
 for (pattern_sentence, tag) in xy:
-    # X: bag of words for each pattern_sentence
     bag = bag_of_words(pattern_sentence, all_words)
     X_train.append(bag)
-    # y: PyTorch CrossEntropyLoss needs only class labels, not one-hot
     label = tags.index(tag)
     y_train.append(label)
 
 X_train = np.array(X_train)
 y_train = np.array(y_train)
 
-# Hyper-parameters 
 num_epochs = 1000
 batch_size = 8
 learning_rate = 0.001
@@ -100,7 +97,6 @@ for epoch in range(num_epochs):
         outputs = model(words)
         loss = criterion(outputs, labels)
 
-        # Backward and optimize
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
